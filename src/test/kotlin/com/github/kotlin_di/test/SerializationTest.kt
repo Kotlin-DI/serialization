@@ -1,7 +1,7 @@
 package com.github.kotlin_di.test
 
-import com.github.kotlin_di.common.`object`.UObject
 import com.github.kotlin_di.generated.serialization
+import com.github.kotlin_di.generated.serializationPlugin
 import com.github.kotlin_di.resolve
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -10,25 +10,25 @@ import org.junit.jupiter.api.Test
 class SerializationTest {
     @BeforeEach
     fun init() {
-        serialization().load()
+        serializationPlugin().load()
     }
 
     @Test
     fun serializeObject() {
-        val obj: UObject = resolve("SObject.new")
-        val nested: UObject = resolve("SObject.new")
+        val obj = resolve(serialization.SOBJECT_NEW)
+        val nested = resolve(serialization.SOBJECT_NEW)
         nested["key"] = "value"
         obj["prop1"] = arrayOf(1, 2, 3)
         obj["prop2"] = nested
         obj["prop3"] = 2.5f
 
-        val json: String = resolve("Serialize", obj)
+        val json = resolve(serialization.SERIALIZE, obj)
         Assertions.assertEquals("""{"prop2":{"key":"value"},"prop1":[1,2,3],"prop3":2.5}""", json)
     }
 
     @Test
     fun serializeArray() {
-        val json: String = resolve("Serialize", 1, 2, 3)
+        val json = resolve(serialization.SERIALIZE, 1, 2, 3)
         Assertions.assertEquals("""[1,2,3]""", json)
     }
 }

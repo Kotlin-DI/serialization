@@ -7,13 +7,13 @@ plugins {
     `maven-publish`
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
     id("org.jetbrains.dokka") version "1.6.21"
-    id("io.github.Kotlin-DI.plugin") version "0.0.1"
+    id("io.github.Kotlin-DI.plugin") version "0.0.2"
 }
 
 val kotlinVersion: String by project
 
 group = "com.github.kotlin_di"
-version = "0.0.1"
+version = "0.0.2"
 
 repositories {
     gradlePluginPortal()
@@ -25,17 +25,12 @@ repositories {
 }
 
 dependencies {
-    import(implementation("com.github.Kotlin-DI:common:0.0.3"))
-    import(implementation("com.github.Kotlin-DI:ioc:0.0.3"))
+    import(implementation("com.github.Kotlin-DI:common:0.0.4"))
+    implementation("com.github.Kotlin-DI:ioc:0.0.4")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-    include("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-ksp {
-    arg("project.group", "${project.group}")
-    arg("project.name", project.name)
 }
 
 ktlint {

@@ -5,7 +5,7 @@ import com.github.kotlin_di.ioc.Dependency
 import com.github.kotlin_di.serialization.SObject
 import kotlinx.serialization.json.*
 
-@IDependency("Serialize")
+@IDependency("Serialize", String::class)
 class SerializationStrategy : Dependency {
 
     private fun objectStrategy(obj: SObject): JsonObject {
