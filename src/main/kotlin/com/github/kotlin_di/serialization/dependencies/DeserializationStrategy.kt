@@ -2,22 +2,22 @@ package com.github.kotlin_di.serialization.dependencies
 
 import com.github.kotlin_di.common.annotations.IDependency
 import com.github.kotlin_di.common.`object`.UObject
+import com.github.kotlin_di.common.types.Dependency
+import com.github.kotlin_di.common.types.Some
 import com.github.kotlin_di.generated.serialization
-import com.github.kotlin_di.ioc.Dependency
-import com.github.kotlin_di.ioc.cast
 import com.github.kotlin_di.resolve
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.*
 
-@IDependency("Deserialize", Any::class)
-class DeserializationStrategy : Dependency {
+@IDependency("Deserialize")
+class DeserializationStrategy : Dependency<String, Any> {
 
     private fun objectStrategy(obj: JsonObject): UObject {
         val result = HashMap<String, Any>()
         obj.entries.forEach {
             result[it.key] = anyStrategy(it.value)
         }
-        return resolve(serialization.SOBJECT_NEW, result)
+        return resolve(serialization.SOBJECT, Some(result))
     }
 
     private fun arrayStrategy(element: JsonArray): Iterable<Any> {
@@ -54,9 +54,8 @@ class DeserializationStrategy : Dependency {
         }
     }
 
-    override fun invoke(args: Array<out Any>): Any {
-        val jsonString: String = cast(args[0])
-        val element = Json.parseToJsonElement(jsonString)
+    override fun invoke(arg: String): Any {
+        val element = Json.parseToJsonElement(arg)
         return anyStrategy(element)
     }
 }

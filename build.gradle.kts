@@ -25,10 +25,10 @@ repositories {
 }
 
 dependencies {
-    import(implementation("com.github.Kotlin-DI:common:0.0.4"))
-    implementation("com.github.Kotlin-DI:ioc:0.0.4")
+    import(implementation("com.github.kotlin_di:common:main-SNAPSHOT"))
+    implementation("com.github.kotlin_di:ioc:main-SNAPSHOT")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    include("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }

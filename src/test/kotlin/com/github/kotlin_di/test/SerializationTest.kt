@@ -15,8 +15,8 @@ class SerializationTest {
 
     @Test
     fun serializeObject() {
-        val obj = resolve(serialization.SOBJECT_NEW)
-        val nested = resolve(serialization.SOBJECT_NEW)
+        val obj = resolve(serialization.SOBJECT)
+        val nested = resolve(serialization.SOBJECT)
         nested["key"] = "value"
         obj["prop1"] = arrayOf(1, 2, 3)
         obj["prop2"] = nested
@@ -28,7 +28,7 @@ class SerializationTest {
 
     @Test
     fun serializeArray() {
-        val json = resolve(serialization.SERIALIZE, 1, 2, 3)
+        val json = resolve(serialization.SERIALIZE, arrayOf(1, 2, 3))
         Assertions.assertEquals("""[1,2,3]""", json)
     }
 }

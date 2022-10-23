@@ -1,12 +1,12 @@
 package com.github.kotlin_di.serialization.dependencies
 
 import com.github.kotlin_di.common.annotations.IDependency
-import com.github.kotlin_di.ioc.Dependency
+import com.github.kotlin_di.common.types.Dependency
 import com.github.kotlin_di.serialization.SObject
 import kotlinx.serialization.json.*
 
-@IDependency("Serialize", String::class)
-class SerializationStrategy : Dependency {
+@IDependency("Serialize")
+class SerializationStrategy : Dependency<Any, String> {
 
     private fun objectStrategy(obj: SObject): JsonObject {
         val map = mutableMapOf<String, JsonElement>()
@@ -54,11 +54,7 @@ class SerializationStrategy : Dependency {
         }
     }
 
-    override fun invoke(args: Array<out Any>): String {
-        return if (args.size == 1) {
-            anyStrategy(args[0]).toString()
-        } else {
-            arrayStrategy(args).toString()
-        }
+    override fun invoke(args: Any): String {
+        return anyStrategy(args).toString()
     }
 }
