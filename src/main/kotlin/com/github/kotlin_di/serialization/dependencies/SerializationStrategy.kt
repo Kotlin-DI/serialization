@@ -1,10 +1,13 @@
 package com.github.kotlin_di.serialization.dependencies
 
 import com.github.kotlin_di.common.annotations.IDependency
-import com.github.kotlin_di.common.types.Dependency
+import com.github.kotlin_di.common.interfaces.Dependency
 import com.github.kotlin_di.serialization.SObject
 import kotlinx.serialization.json.*
 
+/** encode value to json string
+ * @sample com.github.kotlin_di.serialization.serializeSample
+ */
 @IDependency("Serialize")
 class SerializationStrategy : Dependency<Any, String> {
 

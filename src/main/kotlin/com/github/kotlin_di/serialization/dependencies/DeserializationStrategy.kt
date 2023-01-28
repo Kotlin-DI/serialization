@@ -1,14 +1,17 @@
 package com.github.kotlin_di.serialization.dependencies
 
 import com.github.kotlin_di.common.annotations.IDependency
-import com.github.kotlin_di.common.`object`.UObject
-import com.github.kotlin_di.common.types.Dependency
+import com.github.kotlin_di.common.interfaces.Dependency
+import com.github.kotlin_di.common.interfaces.UObject
 import com.github.kotlin_di.common.types.Some
-import com.github.kotlin_di.generated.serialization
 import com.github.kotlin_di.resolve
+import com.github.kotlin_di.serialization.Serialization
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.*
 
+/** Parse Json string
+ *  @sample com.github.kotlin_di.serialization.deserializeSample
+ */
 @IDependency("Deserialize")
 class DeserializationStrategy : Dependency<String, Any> {
 
@@ -17,7 +20,7 @@ class DeserializationStrategy : Dependency<String, Any> {
         obj.entries.forEach {
             result[it.key] = anyStrategy(it.value)
         }
-        return resolve(serialization.SOBJECT, Some(result))
+        return resolve(Serialization.SOBJECT, Some(result))
     }
 
     private fun arrayStrategy(element: JsonArray): Iterable<Any> {
