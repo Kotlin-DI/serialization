@@ -1,8 +1,8 @@
-package com.github.kotlin_di.test
+package com.github.kotlinDI.test
 
-import com.github.kotlin_di.resolve
-import com.github.kotlin_di.serialization.Serialization
-import com.github.kotlin_di.serialization.SerializationPlugin
+import com.github.kotlinDI.resolve
+import com.github.kotlinDI.serialization.Serialization
+import com.github.kotlinDI.serialization.SerializationPlugin
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

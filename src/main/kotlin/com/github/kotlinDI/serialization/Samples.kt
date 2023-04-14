@@ -1,8 +1,8 @@
-package com.github.kotlin_di.serialization
+package com.github.kotlinDI.serialization
 
-import com.github.kotlin_di.common.interfaces.UObject
-import com.github.kotlin_di.common.types.Some
-import com.github.kotlin_di.resolve
+import com.github.kotlinDI.common.interfaces.UObject
+import com.github.kotlinDI.common.types.Some
+import com.github.kotlinDI.resolve
 
 fun deserializeSample() {
     val json = """{"prop1": "value","prop2": {"nested": "value"},"prop3":[1,2] }"""

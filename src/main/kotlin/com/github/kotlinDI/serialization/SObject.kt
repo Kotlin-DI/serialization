@@ -1,6 +1,6 @@
-package com.github.kotlin_di.serialization
+package com.github.kotlinDI.serialization
 
-import com.github.kotlin_di.common.interfaces.UObject
+import com.github.kotlinDI.common.interfaces.UObject
 
 class SObject(internal val map: MutableMap<String, Any>) : UObject {
 

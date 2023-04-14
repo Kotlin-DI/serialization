@@ -1,9 +1,9 @@
-package com.github.kotlin_di.test
+package com.github.kotlinDI.test
 
-import com.github.kotlin_di.common.interfaces.UObject
-import com.github.kotlin_di.resolve
-import com.github.kotlin_di.serialization.Serialization
-import com.github.kotlin_di.serialization.SerializationPlugin
+import com.github.kotlinDI.common.interfaces.UObject
+import com.github.kotlinDI.resolve
+import com.github.kotlinDI.serialization.Serialization
+import com.github.kotlinDI.serialization.SerializationPlugin
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -17,7 +17,10 @@ class DeserializationTest {
 
     @Test
     fun deserializeObject() {
-        val obj = resolve(Serialization.DESERIALIZE, """{"prop1": "value","prop2": {"nested": "value"},"prop3":[1,2] }""") as UObject
+        val obj = resolve(
+            Serialization.DESERIALIZE,
+            """{"prop1": "value","prop2": {"nested": "value"},"prop3":[1,2] }"""
+        ) as UObject
         assertEquals("value", obj["prop1"])
         assertEquals("value", (obj["prop2"] as UObject)["nested"])
         assertEquals(1, (obj["prop3"] as List<*>)[0])

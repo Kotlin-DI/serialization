@@ -1,16 +1,16 @@
-package com.github.kotlin_di.serialization.dependencies
+package com.github.kotlinDI.serialization.dependencies
 
-import com.github.kotlin_di.common.annotations.IDependency
-import com.github.kotlin_di.common.interfaces.Dependency
-import com.github.kotlin_di.common.interfaces.UObject
-import com.github.kotlin_di.common.types.Some
-import com.github.kotlin_di.resolve
-import com.github.kotlin_di.serialization.Serialization
+import com.github.kotlinDI.common.annotations.IDependency
+import com.github.kotlinDI.common.interfaces.Dependency
+import com.github.kotlinDI.common.interfaces.UObject
+import com.github.kotlinDI.common.types.Some
+import com.github.kotlinDI.resolve
+import com.github.kotlinDI.serialization.Serialization
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.*
 
 /** Parse Json string
- *  @sample com.github.kotlin_di.serialization.deserializeSample
+ *  @sample com.github.kotlinDI.serialization.deserializeSample
  */
 @IDependency("Deserialize")
 class DeserializationStrategy : Dependency<String, Any> {
@@ -57,8 +57,8 @@ class DeserializationStrategy : Dependency<String, Any> {
         }
     }
 
-    override fun invoke(arg: String): Any {
-        val element = Json.parseToJsonElement(arg)
+    override fun invoke(args: String): Any {
+        val element = Json.parseToJsonElement(args)
         return anyStrategy(element)
     }
 }
